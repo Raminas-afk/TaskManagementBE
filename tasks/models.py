@@ -1,13 +1,13 @@
 from django.db import models
-from . import TaskStatus
 
+from . import TaskStatus
+from users.models import User
 # Create your models here.
 
 
 class Task(models.Model):
-    # assignee = models.ForeignKey('auth.User', on_delete=models.CASCADE, related_name='tasks')
-    # proposer = models.ForeignKey('auth.User', on_delete=models.CASCADE, related_name='assigned_tasks')
-    # Uncomment and migrate when Custom user model is implemented
+    assignee = models.ForeignKey(User, on_delete=models.CASCADE, related_name='tasks', null=True, blank=True)
+    proposer = models.ForeignKey(User, on_delete=models.CASCADE, related_name='assigned_tasks')
     title = models.CharField(max_length=200)
     description = models.TextField(blank=True, null=True)
     status = models.CharField(choices=TaskStatus.CHOICES, max_length=20, default=TaskStatus.TODO)
