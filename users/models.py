@@ -51,7 +51,7 @@ class User(AbstractBaseUser):
     objects = UserManager()
 
     def __str__(self):
-        return self.name
+        return self.email
 
     # Some crap needed to login with superuser when using custom user model
     def has_module_perms(self, app_label):

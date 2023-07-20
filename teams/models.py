@@ -10,7 +10,7 @@ class Team(models.Model):
     description = models.TextField(blank=True, null=True)
     leaders = models.ManyToManyField(User, related_name='leading_teams')
     members = models.ManyToManyField(User, related_name='teams')
-    tasks = models.ManyToManyField(Task, related_name='teams')
+    tasks = models.ManyToManyField(Task, related_name='teams', blank=True, null=True)
     status = models.CharField(choices=TeamStatus.CHOICES, max_length=20, default=TeamStatus.PUBLIC)
     is_archived = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
